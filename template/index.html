@@ -1,0 +1,105 @@
+{% extends "mod.html" %}
+{% block title %}登录编辑器{% endblock %}
+<!doctype html>
+{% block impb %}
+<meta charset="utf-8">
+<!-- All by Walter Ji[Contact me at twitter @709924470__ OR tencent QQ 709924470 Also rec_000@126.com] from CRC(2017) team 9071 -->
+<style>
+	body{
+		background-color:#215184;
+	}
+	.form {
+		margin: 30vh auto;
+		height: auto;
+		width: 20%;
+		background-color:rgba(8,40,160,0.53);
+		min-height: 155px;
+		min-width: 262px;
+		border-radius: 5px;
+	}
+	#uploaddata{
+		height: inherit;
+	}
+	.tab{
+		color:#8A8A8A;
+		font-weight: bold;
+		margin: auto;
+	}
+	.text{
+		font-family: "幼圆";
+		font-weight: lighter;
+		border-radius: 5px 5px 0 0;
+		width: inherit;
+		color: #A3A3A3;
+		background-color: #353535;
+	}
+	.l{
+		background-color: #540086;
+		width: 5em;
+		padding: 5px;
+		margin: 9px auto;
+		text-align: center;
+		border-radius: 10px;
+	}
+	.l:hover{
+		background-color:#0076D7;
+	}
+</style>
+{% if m %}
+<script type="text/javascript">
+	alert("{{m|safe}}")
+</script>
+{% endif %}
+<script type="text/javascript">
+var hascookie = false
+window.onload=function init(){
+	if((getCookie('u') != null) && getCookie('p') != null){
+		hascookie = true
+		document.getElementById("u").value = getCookie('u')
+		document.getElementById("p").value = getCookie('p')
+	}
+}
+function ulogin(){
+	if (document.getElementById("u").value != '' && document.getElementById("u").value != ' ' && document.getElementById("p").value != '' && document.getElementById("p").value != ' '){
+		SetCookie('u',document.getElementById("u").value)
+		SetCookie('p',document.getElementById("p").value)
+		document.getElementById("uploaddata").submit()
+		return true;
+	}else{
+		if (document.getElementById("u").value == '' || document.getElementById("u").value == ' '){
+			alert("用户名不应为空！")
+			document.getElementById("u").focus()
+		}else if (document.getElementById("p").value == '' || document.getElementById("p").value == ' '){
+			alert("密码不应为空！")
+			document.getElementById("p").focus()
+		}
+		return false;
+	}
+}
+function SetCookie(name,value)
+{
+    var Days = 300;
+    var exp  = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name)     
+{
+    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+     if(arr != null) return (arr[2]); return null;
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="form">
+	<form id="uploaddata" action="/" method="post" onsubmit="submit()">
+		<table class="tab">
+			<center class="text" style="line-height:3em;"><h1>管理日志</h1></center>
+				<tr><td>用户名:</td><td><input id="u" name="u" maxlength="20"></td></tr>
+				<tr><td>密码:</td><td><input id="p" type="password" name="p" maxlength="20"></td></tr>
+			</table>
+		<center><div class="l" onClick="javascript:ulogin();">登录</div></center>
+	</form>
+</div>
+{% endblock %}

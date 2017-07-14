@@ -1,0 +1,66 @@
+<!doctype html>
+{% load static %}
+<meta author="Walter from CRC 2017 team 9071"/>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title%}{% endblock %} | FRC 9071 Team</title>
+<script src="{% static 'js/anime.min.js' %}"></script>
+<style type="text/css">
+@import url("{% static './css/site_title.css' %}");
+</style>
+<script type="text/javascript">
+	var scval = -200
+	function toTop(){
+    	window.scrollBy(0,scval);
+    	scval = scval / 1.05
+    	scrolldelay = setTimeout('toTop()',20);
+    	var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+    	if(sTop==0){
+    		clearTimeout(scrolldelay)
+    		scval = -200
+    	}
+    	if(scval <= 1){
+    		scval = scval * 10
+    	}
+	}
+</script>
+{% block impb %}
+{% endblock %}
+</head>
+
+<body>
+<div class="banner">
+	<div id="top"></div>
+	<a href="http://www.zz47.com/"><img class="zz47" src="{% static './img/zz47.png' %}"/></a>
+	<div class="teamid">
+		9071
+	</div>
+	<div class="pgs">
+		<a href="./">首页</a>
+		<a href="./intro">赛事介绍</a>
+		<a href="./aboutus">关于我们</a>
+	</div>
+	<div id="clr"></div>
+</div>
+<script type="text/javascript">
+	anime({
+		targets: ".banner",
+		opacity: 1,
+		duration: 5000,
+		loop: false,
+	})
+	function cl(s){
+		//console.log(s)
+	}
+</script>
+{% block content %}{% endblock %}
+{% block impa %}{% endblock %}
+<footer>
+	<center class="bottom" style="margin-top: 60px;">
+		<div class="bline"></div>
+		<div class="dj">Powered by Django</div>
+	</center>
+</footer>
+</body>
+</html>

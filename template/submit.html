@@ -1,0 +1,91 @@
+{% extends "mod.html" %}
+{% block title %}上传日志{% endblock %}
+<!doctype html>
+{% block impb %}
+<style>
+	body{
+		background-color: #000142;
+		margin: 0;
+	}
+	.banner{
+		background-color:rgba(0,76,195,0.85);
+	}
+	.content{
+		margin: 0 10%;
+		height: 100vh;
+		background-color: rgba(132,132,132,0.54);
+	}
+	.text{
+		font-family: "幼圆";
+		margin: 0;
+		font-weight: lighter;
+		width: inherit;
+		color: #A3A3A3;
+	}
+	.s{
+		background-color:rgba(85,181,221,1.00);
+		width: 5em;
+		padding: 5px;
+		margin: 9px auto;
+		text-align: center;
+		color: #292929;
+		border-radius: 10px;
+	}
+	.s:hover{
+		background-color:rgba(25,57,179,1.00);
+	}
+	#tab{
+		font-family: "幼圆";
+		color: rgba(145,154,255,1.00);
+		margin-bottom: 0;
+	}
+	#ta{
+		font-size: 1.5em;
+		min-width: 80%;
+		min-height: 70vh;
+		margin: 0 10%;
+		background-color: rgba(63,72,86,1.00);
+		color: rgba(173,173,173,1.00);
+		resize: none;
+	}
+</style>
+<script type="text/javascript">
+	function uld(){
+		document.getElementById("img").value = ''
+		document.getElementById('upd').submit()
+	}
+function rfile(obj){
+	var file = obj.files[0]
+	if(!/image\/\w+/.test(file.type)){
+		alert('请选择图片！')
+		return false;
+	}
+	var read = new FileReader();
+	read.readAsDataURL(file);
+	read.onload = function(e){
+		document.getElementsByName("imgb64")[0].value = this.result
+		var imgt = document.getElementById("img").value.split(".")
+		var imagetype = imgt[imgt.length - 1]
+		document.getElementsByName("ext")[0].value = imagetype;
+	}
+}
+</script>
+{% endblock %}
+{% block content %}
+	<div class="content">
+		<center>
+			<h1 class="text">日志更新页面</h1>
+			<form id="upd" action="\" method="post">
+				<div id="tab">
+						标题:<input id="title" name="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期:<input id="date" type="date" name="date"><p></p>
+						~~~~~~~~~日志内容~~~~~~~~~~<p></p>
+						<textarea id="ta" name="content"></textarea>
+						<p>还有图片？<input id="img" type="file" name="img" onChange="rfile(this);"></p>
+						<input name="imgb64" hidden="true">
+						<input name="ext" hidden="true">
+						<div class="s" onClick="uld();"><a style="text-decoration: none">上传日志</a></div>
+				</div>
+			</form>
+		</center>
+	</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "mod.html" %}
+{% block title %}上传成功{% endblock %}
+<!doctype html>
+{% block impb %}
+<style>
+	body{
+		margin: 0;
+		background-color: #1C47CD;
+	}
+	.content{
+		font-family: "微软雅黑";
+		margin: 25vh auto;
+		height:auto;
+		width: 100%;
+		min-height: 300px;
+		background-color: rgba(255,255,255,0.5);
+	}
+	.inline{
+		display: inline;
+	}
+	.button{
+		background-color: rgba(77,77,77,0.4);
+		width: 5em;
+		padding: 1.5em;
+		margin: 9px 2em;
+		text-align: center;
+		border-radius: 10px;
+	}
+	.button:hover{
+		background-color: rgba(103,103,103,1.00);
+	}
+</style>
+<script type="text/javascript">
+	function toEditor(){
+		window.location.href = "http://team9071.cn:81"
+	}
+	function toIndex(){
+		window.location.href = "http://team9071.cn"
+	}
+</script>
+{% endblock %}
+
+{% block content %}
+<center>
+	<div class="content">
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+		上传成功！
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+		<p>{{ ipath | safe }}</p>
+			{{ tpath | safe }}
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+		<div class="rte inline button" onClick="toEditor();">返回编辑页面</div><div class="rti inline button" onClick="toIndex();">前往主页</div>
+	</div>
+</center>
+{% endblock %}
