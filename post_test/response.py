@@ -16,7 +16,7 @@ bpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def post(rq):
 	print(len(rq.POST))
 	if len(rq.POST) != 0:
-		if ('u' in rq.POST) and ('p' in rq.POST) and ((rq.POST['u'] != "team9071.cn") or (rq.POST['p'] != 'Kaifarizhi@9071')):
+		if ('u' in rq.POST) and ('p' in rq.POST) and ((rq.POST['u'] != "team9071") or (rq.POST['p'] != '@9071')):
 			return rd(rq,"index.html",err)
 		elif ('title' in rq.POST) and ('date' in rq.POST) and ('content' in rq.POST):
 			num = 0
